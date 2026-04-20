@@ -1,0 +1,859 @@
+<!-- 
+  =============================================================
+  Amruta Tanaji Yadav | Professional Developer Portfolio
+  Theme: Antigravity Futuristic (Clean, Professional, Dark)
+  Built with: HTML5, Tailwind CSS, Built-in custom CSS
+  ============================================================= 
+-->
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amruta Tanaji Yadav | Full Stack Developer</title>
+    <meta name="description"
+        content="Professional portfolio of Amruta Tanaji Yadav, showcasing skills, projects, and contact information.">
+
+    <!-- Google Fonts for Clean Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS (via CDN for development/academic submission) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        // Custom Tailwind Configuration for Consistent Colors and Animations
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['Courier New', 'monospace'],
+                    },
+                    colors: {
+                        neon: {
+                            blue: '#00f3ff',   // Primary accent
+                            purple: '#9d00ff', // Secondary accent
+                            pink: '#ff00ea',   // Tertiary accent
+                            teal: '#00ffcc',   // Quaternary accent
+                            orange: '#fb923c', // Warning accent
+                            yellow: '#facc15'  // Info accent
+                        },
+                        dark: {
+                            500: '#151221', // Lighter modal background
+                            900: '#05030a', // Deep space background
+                        }
+                    },
+                    animation: {
+                        // Subtle floating animations to avoid distraction
+                        'float-slow': 'float 8s ease-in-out infinite',
+                        'float-medium': 'float 6s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' }, // Reduced distance for subtlety
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Custom CSS for specific hover effects and scrollbars -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Phosphor Icons (Lightweight, clean vector icons) -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <!-- jQuery for smooth scrolling, interactions, and AJAX -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+</head>
+<!-- Body styling ensures clean dark theme with disabled horizontal scroll -->
+
+<body
+    class="bg-dark-900 text-slate-200 font-sans antialiased overflow-x-hidden selection:bg-neon-blue selection:text-dark-900 relative">
+
+    <!-- === Global Background Effects === -->
+    <div class="fixed inset-0 overflow-hidden pointer-events-none z-[-1]">
+        <!-- Balanced glassmorphism blur orbs -->
+        <div
+            class="absolute top-[10%] left-[10%] w-[350px] h-[350px] bg-neon-purple rounded-full mix-blend-screen filter blur-[150px] opacity-10 animate-float-slow">
+        </div>
+        <div
+            class="absolute bottom-[10%] right-[10%] w-[400px] h-[400px] bg-neon-blue rounded-full mix-blend-screen filter blur-[150px] opacity-10 animate-float-medium">
+        </div>
+        <!-- Grainy overlay to give texture to gradients -->
+        <div
+            class="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-[0.03] mix-blend-overlay">
+        </div>
+    </div>
+
+    <!-- === Sticky Navigation Bar === -->
+    <nav class="fixed w-full top-0 z-50 transition-all duration-300 bg-dark-900/40 backdrop-blur-md border-b border-white/5"
+        id="navbar">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo -->
+                <a href="#hero"
+                    class="text-2xl font-bold tracking-tight text-white hover:text-neon-blue transition-colors glow-text">
+                    AY.
+                </a>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="#about"
+                        class="text-sm font-medium text-slate-400 hover:text-white transition-colors nav-link">About</a>
+                    <a href="#skills"
+                        class="text-sm font-medium text-slate-400 hover:text-white transition-colors nav-link">Skills</a>
+                    <a href="#projects"
+                        class="text-sm font-medium text-slate-400 hover:text-white transition-colors nav-link">Projects</a>
+                    <!-- CTA Button -->
+                    <a href="#contact"
+                        class="text-sm font-medium px-5 py-2.5 rounded border border-neon-blue/50 text-neon-blue hover:bg-neon-blue hover:text-dark-900 glow-btn transition-all duration-300">Contact
+                        Form</a>
+                </div>
+
+                <!-- Mobile Hamburger Menu Button -->
+                <button
+                    class="md:hidden flex flex-col justify-center items-center h-8 w-8 space-y-1.5 focus:outline-none z-50 text-white"
+                    id="mobile-menu-btn" aria-label="Toggle Menu">
+                    <span class="w-6 h-0.5 bg-current transition-transform duration-300 origin-center" id="bar1"></span>
+                    <span class="w-6 h-0.5 bg-current transition-opacity duration-300" id="bar2"></span>
+                    <span class="w-6 h-0.5 bg-current transition-transform duration-300 origin-center" id="bar3"></span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Overlay -->
+        <div class="fixed inset-0 bg-dark-900/95 backdrop-blur-2xl z-40 transform translate-x-full transition-transform duration-300 ease-in-out md:hidden flex flex-col justify-center items-center space-y-8"
+            id="mobile-menu">
+            <a href="#about" class="text-2xl font-medium text-white hover:text-neon-blue mobile-link">About</a>
+            <a href="#skills" class="text-2xl font-medium text-white hover:text-neon-blue mobile-link">Skills</a>
+            <a href="#projects" class="text-2xl font-medium text-white hover:text-neon-blue mobile-link">Projects</a>
+            <a href="#contact" class="text-2xl font-medium text-neon-blue mobile-link">Contact</a>
+        </div>
+    </nav>
+
+    <!-- === Main Content Array === -->
+    <main>
+
+        <!-- 1. Hero Section -->
+        <section id="hero" class="relative min-h-screen flex items-center justify-center pt-20">
+            <div
+                class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 w-full flex flex-col md:flex-row items-center justify-center text-center md:text-left gap-10 md:gap-16 fade-in">
+
+                <!-- Profile Image -->
+                <div class="md:order-2 shrink-0 animate-float-slow transition-all duration-500">
+                    <div class="relative group hover-lift shrink-0">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-tr from-neon-purple to-neon-blue rounded-2xl blur-xl opacity-40 group-hover:opacity-70 transition-opacity duration-300">
+                        </div>
+                        <img src="profile.jpg.jpeg" alt="Profile of Amruta Tanaji Yadav"
+                            class="relative w-48 h-64 md:w-72 md:h-96 object-cover rounded-2xl border border-white/20 shadow-[0_10px_30px_-5px_rgba(157,0,255,0.4)] group-hover:scale-[1.02] group-hover:shadow-[0_10px_40px_-5px_rgba(0,243,255,0.5)] transition-all duration-300">
+                    </div>
+                </div>
+
+                <!-- Text Content -->
+                <div
+                    class="md:order-1 flex flex-col items-center md:items-start text-center md:text-left gap-6 max-w-2xl">
+                    <!-- Status badge -->
+                    <div
+                        class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-neon-blue/30 bg-neon-blue/5 text-neon-blue text-xs font-mono uppercase tracking-wider mb-2">
+                        <span class="relative flex h-2 w-2">
+                            <span
+                                class="animate-ping absolute inline-flex h-full w-full rounded-full bg-neon-blue opacity-75"></span>
+                            <span class="relative inline-flex rounded-full h-2 w-2 bg-neon-blue"></span>
+                        </span>
+                        Available for opportunities
+                    </div>
+
+                    <!-- Main Headlines -->
+                    <div class="flex flex-col gap-2">
+                        <h1 class="text-5xl sm:text-6xl md:text-7xl font-bold text-white leading-tight tracking-tight">
+                            Amruta Tanaji Yadav.
+                        </h1>
+                        <h2
+                            class="text-2xl sm:text-3xl md:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-neon-blue to-neon-purple leading-normal tracking-tight">
+                            Full Stack Developer Aspirant.
+                        </h2>
+                    </div>
+
+                    <!-- Tagline -->
+                    <p class="text-lg text-slate-400 max-w-xl leading-relaxed">
+                        Building robust, responsive, and intelligent web applications using modern aesthetic principles
+                        and clean backend architecture.
+                    </p>
+
+                    <!-- Call to Action -->
+                    <div class="flex flex-wrap justify-center md:justify-start gap-4 mt-2">
+                        <a href="#projects"
+                            class="px-8 py-3.5 bg-neon-blue text-dark-900 font-medium rounded hover:bg-white transition-colors duration-300 shadow-[0_0_15px_rgba(0,243,255,0.3)]">
+                            Explore My Work
+                        </a>
+                        <a href="#contact"
+                            class="px-8 py-3.5 bg-transparent border border-white/20 text-white font-medium rounded hover:border-white/50 transition-colors duration-300">
+                            Get In Touch
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. About Section -->
+        <section id="about" class="py-24 relative z-10">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 fade-in">
+                <!-- Section Header -->
+                <div class="flex items-center gap-4 mb-10">
+                    <span class="text-neon-pink font-mono text-sm leading-none">01.</span>
+                    <h2 class="text-3xl md:text-4xl font-bold text-white tracking-tight">About Me</h2>
+                    <div class="h-px bg-white/10 flex-1 ml-4"></div>
+                </div>
+
+                <!-- Content Card with Glassmorphism -->
+                <div class="glass-card p-6 sm:p-10 text-base sm:text-lg text-slate-300 leading-relaxed space-y-6">
+                    <p>
+                        Hello! I am a passionate Full Stack Developer aspirant with a strong interest in building
+                        modern, responsive, and user-friendly web applications.
+                        My journey in technology stems from a deep curiosity about how digital experiences are
+                        constructed and structured.
+                    </p>
+                    <p>
+                        I enjoy working across the entire stack, bridging the gap between intuitive frontend user
+                        interfaces and secure, scalable backend logic.
+                        I believe in composing clean code, utilizing semantic HTML structures, and embracing continuous
+                        learning to keep up with the ever-evolving technology landscape.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- New: Education Section -->
+        <section id="education" class="py-24 relative z-10 bg-dark-500/10">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 fade-in">
+                <!-- Section Header -->
+                <div class="flex items-center gap-4 mb-16">
+                    <span class="text-neon-blue font-mono text-sm leading-none">01.5</span>
+                    <h2 class="text-3xl md:text-4xl font-bold text-white tracking-tight">Education</h2>
+                    <div class="h-px bg-white/10 flex-1 ml-4"></div>
+                </div>
+
+                <!-- Vertical Timeline Layout -->
+                <div
+                    class="relative space-y-8 before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-white/20 before:to-transparent">
+
+                    <!-- B.Tech Card -->
+                    <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group animate-float-slow transition-all duration-300"
+                        style="animation-delay: 0s">
+                        <!-- Timeline Node -->
+                        <div
+                            class="flex items-center justify-center w-10 h-10 rounded-full border-4 border-dark-900 bg-neon-purple text-dark-900 shadow-[0_0_15px_rgba(157,0,255,0.4)] absolute left-0 md:left-1/2 -translate-x-1/2 shrink-0 z-10 group-hover:scale-110 transition-transform duration-300">
+                            <i class="ph ph-graduation-cap text-lg"></i>
+                        </div>
+
+                        <!-- Card Content -->
+                        <div
+                            class="glass-card hover-lift w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] p-6 ml-auto md:ml-0 hover:shadow-[0_10px_30px_-5px_rgba(157,0,255,0.25)] hover:border-white/10">
+                            <span class="text-neon-purple font-mono text-sm mb-2 block">Currently Pursuing</span>
+                            <h3
+                                class="text-xl font-bold text-white mb-1 group-hover:text-neon-purple transition-colors">
+                                B.Tech in Computer Engineering</h3>
+                            <p class="text-slate-300 text-sm mb-4">Rajarambapu Institute of Technology (RIT), Islampur
+                            </p>
+
+                            <div
+                                class="inline-flex py-1 px-3 bg-neon-purple/10 border border-neon-purple/20 rounded-md">
+                                <span class="text-neon-purple text-sm font-semibold">CGPA: 9.20</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- HSC Card -->
+                    <div class="relative flex items-center justify-between md:justify-normal md:even:flex-row-reverse group animate-float-slow transition-all duration-300"
+                        style="animation-delay: 0.2s">
+                        <!-- Timeline Node -->
+                        <div
+                            class="flex items-center justify-center w-10 h-10 rounded-full border-4 border-dark-900 bg-neon-blue text-dark-900 shadow-[0_0_15px_rgba(0,243,255,0.4)] absolute left-0 md:left-1/2 -translate-x-1/2 shrink-0 z-10 group-hover:scale-110 transition-transform duration-300">
+                            <i class="ph ph-books text-lg"></i>
+                        </div>
+
+                        <!-- Card Content -->
+                        <div
+                            class="glass-card hover-lift w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] p-6 ml-auto md:ml-0 hover:shadow-[0_10px_30px_-5px_rgba(0,243,255,0.25)] hover:border-white/10 text-left md:text-right">
+                            <span class="text-neon-blue font-mono text-sm mb-2 block">Completed 2024</span>
+                            <h3 class="text-xl font-bold text-white mb-1 group-hover:text-neon-blue transition-colors">
+                                Higher Secondary Certificate (HSC)</h3>
+                            <p class="text-slate-300 text-sm mb-4">Vidyamandir Highschool and Jr. College, Islampur</p>
+
+                            <div class="flex flex-wrap gap-2 md:justify-end">
+                                <div
+                                    class="inline-flex py-1 px-3 bg-neon-blue/10 border border-neon-blue/20 rounded-md">
+                                    <span class="text-neon-blue text-sm font-semibold">Percentage: 90.17%</span>
+                                </div>
+                                <div
+                                    class="inline-flex py-1 px-3 bg-neon-blue/10 border border-neon-blue/20 rounded-md">
+                                    <span class="text-neon-blue text-sm font-semibold">MHT-CET: 95.05</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- SSC Card -->
+                    <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group animate-float-slow transition-all duration-300"
+                        style="animation-delay: 0.4s">
+                        <!-- Timeline Node -->
+                        <div
+                            class="flex items-center justify-center w-10 h-10 rounded-full border-4 border-dark-900 bg-neon-pink text-dark-900 shadow-[0_0_15px_rgba(255,0,234,0.4)] absolute left-0 md:left-1/2 -translate-x-1/2 shrink-0 z-10 group-hover:scale-110 transition-transform duration-300">
+                            <i class="ph ph-backpack text-lg"></i>
+                        </div>
+
+                        <!-- Card Content -->
+                        <div
+                            class="glass-card hover-lift w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] p-6 ml-auto md:ml-0 hover:shadow-[0_10px_30px_-5px_rgba(255,0,234,0.25)] hover:border-white/10">
+                            <span class="text-neon-pink font-mono text-sm mb-2 block">Completed: 2022</span>
+                            <h3 class="text-xl font-bold text-white mb-1 group-hover:text-neon-pink transition-colors">
+                                Secondary School Certificate (SSC)</h3>
+                            <p class="text-slate-300 text-sm mb-4">KRKV, Islampur</p>
+
+                            <div class="inline-flex py-1 px-3 bg-neon-pink/10 border border-neon-pink/20 rounded-md">
+                                <span class="text-neon-pink text-sm font-semibold">Percentage: 95%</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. Skills Section -->
+        <section id="skills" class="py-24 relative z-10 bg-dark-500/20">
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 fade-in">
+                <!-- Section Header -->
+                <div class="flex items-center gap-4 mb-12 justify-end">
+                    <div class="h-px bg-white/10 flex-1 mr-4"></div>
+                    <h2 class="text-3xl md:text-4xl font-bold text-white tracking-tight">Technical Skills</h2>
+                    <span class="text-neon-teal font-mono text-sm leading-none">.02</span>
+                </div>
+
+                <!-- Skills Grid (Organized cleanly) -->
+                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 mt-8">
+                    <div class="skill-pill"><i class="ph ph-terminal-window text-white/50"></i> C<div
+                            class="skill-glow bg-white"></div>
+                    </div>
+                    <div class="skill-pill"><i class="ph ph-code text-neon-blue"></i> Python<div
+                            class="skill-glow bg-neon-blue"></div>
+                    </div>
+                    <div class="skill-pill"><i class="ph ph-coffee text-orange-500"></i> Java<div
+                            class="skill-glow bg-orange-500"></div>
+                    </div>
+                    <div class="skill-pill"><i class="ph ph-file-html text-neon-pink"></i> HTML<div
+                            class="skill-glow bg-neon-pink"></div>
+                    </div>
+                    <div class="skill-pill"><i class="ph ph-file-css text-neon-blue"></i> CSS<div
+                            class="skill-glow bg-neon-blue"></div>
+                    </div>
+                    <div class="skill-pill"><i class="ph ph-brackets-curly text-neon-yellow"></i> JavaScript<div
+                            class="skill-glow bg-neon-yellow"></div>
+                    </div>
+                    <div class="skill-pill"><i class="ph ph-database text-neon-purple"></i> DBMS<div
+                            class="skill-glow bg-neon-purple"></div>
+                    </div>
+                    <div class="skill-pill"><i class="ph ph-tree-structure text-neon-teal"></i> Data Structures &
+                        Algorithms<div class="skill-glow bg-neon-teal"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. Projects Section -->
+        <section id="projects" class="py-24 relative z-10">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <!-- Section Header -->
+                <div class="flex items-center gap-4 mb-8 fade-in">
+                    <span class="text-neon-blue font-mono text-sm leading-none">03.</span>
+                    <h2 class="text-3xl md:text-4xl font-bold text-white tracking-tight">Featured Projects</h2>
+                    <div class="h-px bg-white/10 flex-1 ml-4"></div>
+                </div>
+
+                <!-- Project Category Filters -->
+                <div class="flex flex-wrap gap-3 mb-10 fade-in" id="project-filters">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="full-stack">Full Stack</button>
+                    <button class="filter-btn" data-filter="web">Web Front-End</button>
+                    <button class="filter-btn" data-filter="other">Hardware & ML</button>
+                </div>
+
+                <!-- Projects Display Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="projects-grid">
+
+                    <!-- Project 1 -->
+                    <article class="glass-card flex flex-col hover-lift group fade-in project-item"
+                        data-category="full-stack">
+                        <div
+                            class="h-40 border-b border-white/5 bg-white/5 flex items-center justify-center p-6 relative overflow-hidden transition-colors duration-500 group-hover:bg-neon-purple/5">
+                            <i
+                                class="ph ph-graduation-cap text-5xl text-slate-500 group-hover:text-neon-purple transition-all duration-300"></i>
+                        </div>
+                        <div class="p-6 flex flex-col flex-grow">
+                            <h3
+                                class="text-xl font-semibold text-white mb-2 group-hover:text-neon-purple transition-colors">
+                                Edupath JEE Platform</h3>
+                            <p class="text-slate-400 text-sm mb-4 line-clamp-3">A comprehensive learning platform for
+                                JEE aspirants built entirely on the MERN stack with authentication and testing.</p>
+
+                            <!-- Tech Stack -->
+                            <div class="flex flex-wrap gap-2 mb-6">
+                                <span class="tech-tag">MongoDB</span>
+                                <span class="tech-tag">Express</span>
+                                <span class="tech-tag">React</span>
+                                <span class="tech-tag">Node</span>
+                            </div>
+
+                            <!-- Action Buttons -->
+                            <div class="mt-auto flex gap-3">
+                                <a href="#" class="btn-secondary flex-1" aria-label="GitHub Repository"><i
+                                        class="ph ph-github-logo"></i> Code</a>
+                                <a href="#" class="btn-primary-purple flex-1" aria-label="Live Demo"><i
+                                        class="ph ph-arrow-up-right"></i> Demo</a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Project 2 -->
+                    <article class="glass-card flex flex-col hover-lift group fade-in project-item"
+                        data-category="full-stack">
+                        <div
+                            class="h-40 border-b border-white/5 bg-white/5 flex items-center justify-center p-6 relative overflow-hidden transition-colors duration-500 group-hover:bg-neon-pink/5">
+                            <i
+                                class="ph ph-heart text-5xl text-slate-500 group-hover:text-neon-pink transition-all duration-300"></i>
+                        </div>
+                        <div class="p-6 flex flex-col flex-grow">
+                            <span class="text-neon-pink font-mono text-xs mb-1 block">Full Stack Website</span>
+                            <h3
+                                class="text-xl font-semibold text-white mb-2 group-hover:text-neon-pink transition-colors">
+                                Marriage Bureau Website</h3>
+                            <p class="text-slate-400 text-sm mb-4 line-clamp-3">A full stack web application for
+                                managing matchmaking profiles with user authentication and database integration.</p>
+                            <div class="flex flex-wrap gap-2 mb-6">
+                                <span class="tech-tag">HTML/CSS</span>
+                                <span class="tech-tag">JavaScript</span>
+                                <span class="tech-tag">Database</span>
+                            </div>
+                            <div class="mt-auto flex gap-3">
+                                <a href="#" class="btn-secondary flex-1"><i class="ph ph-github-logo"></i> Code</a>
+                                <a href="#" class="btn-primary-pink flex-1"><i class="ph ph-arrow-up-right"></i>
+                                    Demo</a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Project 3 -->
+                    <article class="glass-card flex flex-col hover-lift group fade-in project-item"
+                        data-category="other">
+                        <div
+                            class="h-40 border-b border-white/5 bg-white/5 flex items-center justify-center p-6 relative overflow-hidden transition-colors duration-500 group-hover:bg-neon-teal/5">
+                            <i
+                                class="ph ph-plant text-5xl text-slate-500 group-hover:text-neon-teal transition-all duration-300"></i>
+                        </div>
+                        <div class="p-6 flex flex-col flex-grow">
+                            <h3
+                                class="text-xl font-semibold text-white mb-2 group-hover:text-neon-teal transition-colors">
+                                Plant Disease Detection</h3>
+                            <p class="text-slate-400 text-sm mb-4 line-clamp-3">An intelligent Machine Learning system
+                                analyzing crop imagery to diagnose diseases early and suggest treatments.</p>
+                            <div class="flex flex-wrap gap-2 mb-6">
+                                <span class="tech-tag">Python</span>
+                                <span class="tech-tag">Machine Learning</span>
+                            </div>
+                            <div class="mt-auto flex gap-3">
+                                <a href="#" class="btn-secondary flex-1"><i class="ph ph-github-logo"></i> Code</a>
+                                <a href="#" class="btn-primary-teal flex-1"><i class="ph ph-arrow-up-right"></i>
+                                    Demo</a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Project 4 -->
+                    <article class="glass-card flex flex-col hover-lift group fade-in project-item"
+                        data-category="other">
+                        <div
+                            class="h-40 border-b border-white/5 bg-white/5 flex items-center justify-center p-6 relative overflow-hidden transition-colors duration-500 group-hover:bg-neon-orange/5">
+                            <i
+                                class="ph ph-car text-5xl text-slate-500 group-hover:text-neon-orange transition-all duration-300"></i>
+                        </div>
+                        <div class="p-6 flex flex-col flex-grow">
+                            <h3
+                                class="text-xl font-semibold text-white mb-2 group-hover:text-neon-orange transition-colors">
+                                Tractor Trolley Alert Device</h3>
+                            <p class="text-slate-400 text-sm mb-4 line-clamp-3">A hardware-integrated solution designed
+                                to alert operators of unsafe tilting angles to prevent physical accidents.</p>
+                            <div class="flex flex-wrap gap-2 mb-6">
+                                <span class="tech-tag">Hardware</span>
+                                <span class="tech-tag">C/C++</span>
+                                <span class="tech-tag">Sensors</span>
+                            </div>
+                            <div class="mt-auto flex gap-3">
+                                <a href="#" class="btn-secondary flex-1"><i class="ph ph-github-logo"></i> Code</a>
+                                <a href="#" class="btn-primary-orange flex-1"><i class="ph ph-article"></i> Read</a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Project 5 -->
+                    <article class="glass-card flex flex-col hover-lift group fade-in project-item" data-category="web">
+                        <div
+                            class="h-40 border-b border-white/5 bg-white/5 flex items-center justify-center p-6 relative overflow-hidden transition-colors duration-500 group-hover:bg-neon-yellow/5">
+                            <i
+                                class="ph ph-storefront text-5xl text-slate-500 group-hover:text-neon-yellow transition-all duration-300"></i>
+                        </div>
+                        <div class="p-6 flex flex-col flex-grow">
+                            <h3
+                                class="text-xl font-semibold text-white mb-2 group-hover:text-neon-yellow transition-colors">
+                                Shreeram Hardware Website</h3>
+                            <p class="text-slate-400 text-sm mb-4 line-clamp-3">A digital storefront and organized
+                                catalog for a local hardware business, enabling wider online presence.</p>
+                            <div class="flex flex-wrap gap-2 mb-6">
+                                <span class="tech-tag">Web Dev</span>
+                                <span class="tech-tag">Bootstrap</span>
+                            </div>
+                            <div class="mt-auto flex gap-3">
+                                <a href="#" class="btn-secondary flex-1"><i class="ph ph-github-logo"></i> Code</a>
+                                <a href="#" class="btn-primary-yellow flex-1"><i class="ph ph-arrow-up-right"></i>
+                                    Demo</a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Project 6 -->
+                    <article class="glass-card flex flex-col hover-lift group fade-in project-item" data-category="web">
+                        <div
+                            class="h-40 border-b border-white/5 bg-white/5 flex items-center justify-center p-6 relative overflow-hidden transition-colors duration-500 group-hover:bg-neon-blue/5">
+                            <i
+                                class="ph ph-shopping-cart text-5xl text-slate-500 group-hover:text-neon-blue transition-all duration-300"></i>
+                        </div>
+                        <div class="p-6 flex flex-col flex-grow">
+                            <h3
+                                class="text-xl font-semibold text-white mb-2 group-hover:text-neon-blue transition-colors">
+                                Amazon Frontend Clone</h3>
+                            <p class="text-slate-400 text-sm mb-4 line-clamp-3">A meticulous recreation of the Amazon
+                                homepage layout, demonstrating complex responsive CSS styling skills.</p>
+                            <div class="flex flex-wrap gap-2 mb-6">
+                                <span class="tech-tag">HTML5</span>
+                                <span class="tech-tag">CSS3</span>
+                                <span class="tech-tag">Flexbox/Grid</span>
+                            </div>
+                            <div class="mt-auto flex gap-3">
+                                <a href="#" class="btn-secondary flex-1"><i class="ph ph-github-logo"></i> Code</a>
+                                <a href="#" class="btn-primary-blue flex-1"><i class="ph ph-arrow-up-right"></i>
+                                    Demo</a>
+                            </div>
+                        </div>
+                    </article>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- New: Certifications Section -->
+        <section id="certifications" class="py-24 relative z-10">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 fade-in">
+                <!-- Section Header -->
+                <div class="flex items-center gap-4 mb-10 justify-end">
+                    <div class="h-px bg-white/10 flex-1 mr-4"></div>
+                    <h2 class="text-3xl md:text-4xl font-bold text-white tracking-tight">Certifications</h2>
+                    <span class="text-neon-purple font-mono text-sm leading-none">.035</span>
+                </div>
+
+                <!-- Certification Card (Antigravity Style) -->
+                <article
+                    class="glass-card flex flex-col md:flex-row items-center gap-6 p-6 md:p-8 hover-lift group animate-float-slow transition-all duration-300 hover:shadow-[0_15px_30px_-5px_rgba(157,0,255,0.25)]">
+                    <!-- Icon graphic -->
+                    <div
+                        class="flex-shrink-0 w-20 h-20 md:w-24 md:h-24 rounded-full bg-neon-purple/10 border border-neon-purple/30 flex items-center justify-center shadow-[0_0_15px_rgba(157,0,255,0.2)] group-hover:bg-neon-purple/20 transition-all duration-300">
+                        <i class="ph ph-certificate text-4xl md:text-5xl text-neon-purple"></i>
+                    </div>
+                    <!-- Content -->
+                    <div class="text-center md:text-left">
+                        <h3
+                            class="text-xl md:text-2xl font-bold text-white mb-2 group-hover:text-neon-purple transition-colors">
+                            Goethe Institute German Language Certification (A1 Level)</h3>
+                        <p class="text-slate-400 text-base leading-relaxed">
+                            Successfully completed A1 level German language certification demonstrating basic
+                            proficiency in reading, writing, and communication.
+                        </p>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- New: Languages Section -->
+        <section id="languages" class="py-24 relative z-10 bg-dark-500/10">
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 fade-in">
+                <!-- Section Header -->
+                <div class="flex items-center gap-4 mb-10">
+                    <span class="text-neon-teal font-mono text-sm leading-none">03.8</span>
+                    <h2 class="text-3xl md:text-4xl font-bold text-white tracking-tight">Languages</h2>
+                    <div class="h-px bg-white/10 flex-1 ml-4"></div>
+                </div>
+
+                <!-- Languages Grid -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
+
+                    <!-- Marathi -->
+                    <div class="glass-card p-6 flex flex-col gap-4 hover-lift group animate-float-slow transition-all duration-300 hover:shadow-[0_10px_30px_-5px_rgba(0,255,204,0.25)] hover:border-white/10"
+                        style="animation-delay: 0s">
+                        <div class="flex flex-col gap-1">
+                            <h3 class="text-xl font-bold text-white group-hover:text-neon-teal transition-colors">
+                                Marathi</h3>
+                            <span
+                                class="text-xs font-mono text-neon-teal w-max bg-neon-teal/10 px-2 py-1 rounded">Mother
+                                Tongue</span>
+                        </div>
+                        <!-- Progress Bar -->
+                        <div class="w-full bg-white/5 rounded-full h-1.5 mt-auto">
+                            <div class="bg-neon-teal h-1.5 rounded-full transition-all duration-1000 ease-out"
+                                style="width: 100%"></div>
+                        </div>
+                    </div>
+
+                    <!-- Hindi -->
+                    <div class="glass-card p-6 flex flex-col gap-4 hover-lift group animate-float-slow transition-all duration-300 hover:shadow-[0_10px_30px_-5px_rgba(0,243,255,0.25)] hover:border-white/10"
+                        style="animation-delay: 0.2s">
+                        <div class="flex flex-col gap-1">
+                            <h3 class="text-xl font-bold text-white group-hover:text-neon-blue transition-colors">Hindi
+                            </h3>
+                            <span
+                                class="text-xs font-mono text-neon-blue w-max bg-neon-blue/10 px-2 py-1 rounded">Fluent</span>
+                        </div>
+                        <!-- Progress Bar -->
+                        <div class="w-full bg-white/5 rounded-full h-1.5 mt-auto">
+                            <div class="bg-neon-blue h-1.5 rounded-full transition-all duration-1000 ease-out"
+                                style="width: 95%"></div>
+                        </div>
+                    </div>
+
+                    <!-- English -->
+                    <div class="glass-card p-6 flex flex-col gap-4 hover-lift group animate-float-slow transition-all duration-300 hover:shadow-[0_10px_30px_-5px_rgba(157,0,255,0.25)] hover:border-white/10"
+                        style="animation-delay: 0.4s">
+                        <div class="flex flex-col gap-1">
+                            <h3 class="text-xl font-bold text-white group-hover:text-neon-purple transition-colors">
+                                English</h3>
+                            <span
+                                class="text-xs font-mono text-neon-purple w-max bg-neon-purple/10 px-2 py-1 rounded">Proficient</span>
+                        </div>
+                        <!-- Progress Bar -->
+                        <div class="w-full bg-white/5 rounded-full h-1.5 mt-auto">
+                            <div class="bg-neon-purple h-1.5 rounded-full transition-all duration-1000 ease-out"
+                                style="width: 85%"></div>
+                        </div>
+                    </div>
+
+                    <!-- Sanskrit -->
+                    <div class="glass-card p-6 flex flex-col gap-4 hover-lift group animate-float-slow transition-all duration-300 hover:shadow-[0_10px_30px_-5px_rgba(250,204,21,0.25)] hover:border-white/10"
+                        style="animation-delay: 0.6s">
+                        <div class="flex flex-col gap-1">
+                            <h3 class="text-xl font-bold text-white group-hover:text-neon-yellow transition-colors">
+                                Sanskrit</h3>
+                            <span
+                                class="text-xs font-mono text-neon-yellow w-max bg-neon-yellow/10 px-2 py-1 rounded">Basic</span>
+                        </div>
+                        <!-- Progress Bar -->
+                        <div class="w-full bg-white/5 rounded-full h-1.5 mt-auto">
+                            <div class="bg-neon-yellow h-1.5 rounded-full transition-all duration-1000 ease-out"
+                                style="width: 40%"></div>
+                        </div>
+                    </div>
+
+                    <!-- German -->
+                    <div class="glass-card p-6 flex flex-col gap-4 hover-lift group animate-float-slow transition-all duration-300 hover:shadow-[0_10px_30px_-5px_rgba(255,0,234,0.25)] hover:border-white/10"
+                        style="animation-delay: 0.8s">
+                        <div class="flex flex-col gap-1">
+                            <h3 class="text-xl font-bold text-white group-hover:text-neon-pink transition-colors">German
+                            </h3>
+                            <span class="text-xs font-mono text-neon-pink w-max bg-neon-pink/10 px-2 py-1 rounded">A1
+                                Level</span>
+                        </div>
+                        <!-- Progress Bar -->
+                        <div class="w-full bg-white/5 rounded-full h-1.5 mt-auto">
+                            <div class="bg-neon-pink h-1.5 rounded-full transition-all duration-1000 ease-out"
+                                style="width: 25%"></div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. Contact Section -->
+        <section id="contact" class="py-24 relative z-10 bg-dark-500/20">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 fade-in">
+
+                <!-- Section Header -->
+                <div class="text-center mb-16">
+                    <span class="text-neon-purple font-mono text-sm block mb-3">04. Next Steps</span>
+                    <h2 class="text-3xl md:text-5xl font-bold text-white mb-4">Establish Connection</h2>
+                    <p class="text-slate-400 mt-2">I am currently open to new opportunities. Send me a message or
+                        connect directly!</p>
+                </div>
+
+                <!-- Split Layout: Contact Cards & Form -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+
+                    <!-- Contact Cards Grid (2x2) -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <!-- Email Card -->
+                        <a href="mailto:2403085@ritindia.edu"
+                            class="glass-card p-6 flex flex-col items-center text-center gap-4 hover-lift group animate-float-slow transition-all duration-300 hover:shadow-[0_10px_30px_-5px_rgba(255,0,234,0.25)] hover:border-white/10 decoration-transparent">
+                            <div
+                                class="w-16 h-16 rounded-full bg-neon-pink/10 flex items-center justify-center text-neon-pink text-3xl group-hover:bg-neon-pink/20 transition-all duration-300">
+                                <i class="ph ph-envelope-simple"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-white font-bold mb-1">Email</h4>
+                                <p
+                                    class="text-slate-400 text-sm group-hover:text-neon-pink transition-colors break-all">
+                                    2403085@ritindia.edu</p>
+                            </div>
+                        </a>
+
+                        <!-- Phone Card -->
+                        <a href="tel:8698544902"
+                            class="glass-card p-6 flex flex-col items-center text-center gap-4 hover-lift group animate-float-slow transition-all duration-300 hover:shadow-[0_10px_30px_-5px_rgba(0,255,204,0.25)] hover:border-white/10 decoration-transparent"
+                            style="animation-delay: 0.2s">
+                            <div
+                                class="w-16 h-16 rounded-full bg-neon-teal/10 flex items-center justify-center text-neon-teal text-3xl group-hover:bg-neon-teal/20 transition-all duration-300">
+                                <i class="ph ph-phone"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-white font-bold mb-1">Phone</h4>
+                                <p
+                                    class="text-slate-400 text-sm group-hover:text-neon-teal transition-colors break-all">
+                                    +91 86985 44902</p>
+                            </div>
+                        </a>
+
+                        <!-- LinkedIn Card -->
+                        <a href="https://www.linkedin.com/in/amruta-yadav-41990a381" target="_blank"
+                            rel="noopener noreferrer"
+                            class="glass-card p-6 flex flex-col items-center text-center gap-4 hover-lift group animate-float-slow transition-all duration-300 hover:shadow-[0_10px_30px_-5px_rgba(0,243,255,0.25)] hover:border-white/10 decoration-transparent"
+                            style="animation-delay: 0.4s">
+                            <div
+                                class="w-16 h-16 rounded-full bg-neon-blue/10 flex items-center justify-center text-neon-blue text-3xl group-hover:bg-neon-blue/20 transition-all duration-300">
+                                <i class="ph ph-linkedin-logo"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-white font-bold mb-1">LinkedIn</h4>
+                                <p
+                                    class="text-slate-400 text-sm group-hover:text-neon-blue transition-colors break-all">
+                                    Amruta Yadav</p>
+                            </div>
+                        </a>
+
+                        <!-- GitHub Card -->
+                        <a href="https://github.com/yadavamu05-cloud" target="_blank" rel="noopener noreferrer"
+                            class="glass-card p-6 flex flex-col items-center text-center gap-4 hover-lift group animate-float-slow transition-all duration-300 hover:shadow-[0_10px_30px_-5px_rgba(157,0,255,0.25)] hover:border-white/10 decoration-transparent"
+                            style="animation-delay: 0.6s">
+                            <div
+                                class="w-16 h-16 rounded-full bg-neon-purple/10 flex items-center justify-center text-neon-purple text-3xl group-hover:bg-neon-purple/20 transition-all duration-300">
+                                <i class="ph ph-github-logo"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-white font-bold mb-1">GitHub</h4>
+                                <p
+                                    class="text-slate-400 text-sm group-hover:text-neon-purple transition-colors break-all">
+                                    yadavamu05-cloud</p>
+                            </div>
+                        </a>
+                    </div>
+
+                    <!-- Glassmorphism Contact Form -->
+                    <form id="contactForm"
+                        class="glass-card p-6 sm:p-8 relative overflow-hidden rounded-xl border border-white/10"
+                        novalidate>
+
+                        <!-- Form overlay states handling (Success API) -->
+                        <div id="formOverlay"
+                            class="absolute inset-0 bg-dark-900/95 backdrop-blur-md flex-col items-center justify-center text-center px-6 hidden z-20">
+                            <i id="overlayIcon"
+                                class="ph ph-check-circle text-6xl text-neon-teal mb-4 animate-bounce"></i>
+                            <h4 id="overlayTitle" class="text-2xl font-bold text-white mb-2">Message Sent</h4>
+                            <p id="overlayMessage" class="text-slate-400 mb-6">Thank you. I have received your message
+                                and
+                                will reply soon.</p>
+                            <button type="button" id="resetFormBtn" class="btn-secondary px-6">Send Another</button>
+                        </div>
+
+                        <!-- Input Grid -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                            <!-- Name Field -->
+                            <div class="form-group">
+                                <label for="name"
+                                    class="block text-sm font-medium text-slate-300 mb-2 font-mono">Name</label>
+                                <input type="text" id="name" name="name" class="form-input" placeholder="John Doe">
+                                <span class="error-msg text-neon-pink text-xs mt-1 absolute -bottom-5 hidden"
+                                    id="nameError">Please enter your name.</span>
+                            </div>
+
+                            <!-- Email Field -->
+                            <div class="form-group">
+                                <label for="email" class="block text-sm font-medium text-slate-300 mb-2 font-mono">Email
+                                    Address</label>
+                                <input type="email" id="email" name="email" class="form-input"
+                                    placeholder="john@example.com">
+                                <span class="error-msg text-neon-pink text-xs mt-1 absolute -bottom-5 hidden"
+                                    id="emailError">Please enter a valid email.</span>
+                            </div>
+                        </div>
+
+                        <!-- Message Field -->
+                        <div class="form-group mb-8">
+                            <label for="message"
+                                class="block text-sm font-medium text-slate-300 mb-2 font-mono">Message</label>
+                            <textarea id="message" name="message" rows="5" class="form-input resize-none"
+                                placeholder="Your message details..."></textarea>
+                            <span class="error-msg text-neon-pink text-xs mt-1 absolute -bottom-5 hidden"
+                                id="messageError">Message cannot be empty.</span>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <button type="submit" id="submitBtn"
+                            class="w-full text-center py-3 bg-neon-blue/10 border border-neon-blue text-neon-blue font-medium rounded hover:bg-neon-blue hover:text-dark-900 transition-all duration-300 flex items-center justify-center gap-2 glow-btn">
+                            <i class="ph ph-paper-plane-tilt"></i> <span id="btnText">Send Transmission</span>
+                            <i class="ph ph-spinner animate-spin hidden" id="loadingIcon"></i>
+                        </button>
+                    </form>
+
+                </div> <!-- End of Split Layout Grid -->
+
+            </div>
+        </section>
+    </main>
+
+    <!-- === Footer Sequence === -->
+    <footer class="bg-dark-900 py-8 border-t border-white/5 relative z-10 text-center md:text-left">
+        <div
+            class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-4">
+            <!-- Copyright & Credits -->
+            <p class="text-sm text-slate-500 font-mono">
+                Designed & Built by <span class="text-white font-semibold">Amruta Tanaji Yadav</span>
+            </p>
+
+            <!-- Social External Links -->
+            <div class="flex space-x-5 text-xl text-slate-500">
+                <a href="#" class="hover:text-white hover:-translate-y-1 transition-all duration-300"
+                    aria-label="GitHub Profile"><i class="ph ph-github-logo"></i></a>
+                <a href="#" class="hover:text-neon-blue hover:-translate-y-1 transition-all duration-300"
+                    aria-label="LinkedIn Profile"><i class="ph ph-linkedin-logo"></i></a>
+                <a href="mailto:2403085@gmail.com"
+                    class="hover:text-neon-pink hover:-translate-y-1 transition-all duration-300"
+                    aria-label="Send Email"><i class="ph ph-envelope-simple"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Custom Interactivity Scripts -->
+    <script src="script.js"></script>
+</body>
+
+</html>
